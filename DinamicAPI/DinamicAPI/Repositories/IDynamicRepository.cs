@@ -1,9 +1,11 @@
 ﻿using MongoDB.Bson;
 
-namespace DinamicAPI.Repositories;
-
-public interface IDynamicRepository
+namespace DinamicAPI.Repositories
 {
-    Task<List<BsonDocument>> GetAllAsync(string collectionName);
-    Task InsertAsync(string collectionName, BsonDocument document);
+    public interface IDynamicRepository
+    {
+        Task<List<BsonDocument>> GetAllAsync();
+
+        Task InsertAsync(BsonDocument document);
+    }
 }

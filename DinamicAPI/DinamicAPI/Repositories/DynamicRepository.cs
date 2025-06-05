@@ -6,24 +6,21 @@ namespace DinamicAPI.Repositories
 {
     public class DynamicRepository : IDynamicRepository
     {
-        private readonly IMongoDatabase _database;
+        private readonly IMongoCollection<BsonDocument> _collection;
 
         public DynamicRepository(MongoDBContext context)
         {
-            _database = context.GetDatabase();
-        }
-        public async Task<List<BsonDocument>> GetAllAsync(string collectionName)
-        {
-            var collection = _database.GetCollection<BsonDocument>(collectionName);
-
-            return await collection.Find(new BsonDocument()).ToListAsync();
+            _collection = context.Collection;
         }
 
-        public async Task InsertAsync(string collectionName, BsonDocument document)
+        public async Task<List<BsonDocument>> GetAllAsync()
         {
-            var collection = _database.GetCollection<BsonDocument>(collectionName);
+            return await _collection.Find(new BsonDocument()).ToListAsync();
+        }
 
-            await collection.InsertOneAsync(document);
+        public async Task InsertAsync(BsonDocument document)
+        {
+            await _collection.InsertOneAsync(document);
         }
     }
 }

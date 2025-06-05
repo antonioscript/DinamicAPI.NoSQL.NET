@@ -16,16 +16,15 @@ namespace DinamicAPI.Controllers
             _repository = repository;
         }
 
-
-        [HttpPost("{collection}")]
-        public async Task<IActionResult> Post(string collection, [FromBody] JsonElement jsonElement)
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] JsonElement jsonElement)
         {
             try
             {
                 var document = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(jsonElement.GetRawText());
                 
-                await _repository.InsertAsync(collection, document);
-
+                await _repository.InsertAsync(document);
+                
                 return Ok(new { message = "Documento inserido com sucesso!" });
             }
             catch (Exception ex)
@@ -34,13 +33,12 @@ namespace DinamicAPI.Controllers
             }
         }
 
-
-        [HttpGet("{collection}")]
-        public async Task<IActionResult> Get(string collection)
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var docs = await _repository.GetAllAsync(collection);
+                var docs = await _repository.GetAllAsync();
 
                 var jsonList = docs
                     .Select(d => JsonSerializer.Deserialize<object>(d.ToJson()))
@@ -53,6 +51,5 @@ namespace DinamicAPI.Controllers
                 return StatusCode(500, new { message = "Erro ao recuperar documentos.", details = ex.Message });
             }
         }
-
     }
 }
