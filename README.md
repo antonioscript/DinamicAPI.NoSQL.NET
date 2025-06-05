@@ -3,4 +3,6 @@ API created to simulate request and sending of dynamic objects and storing in th
 
 
 # References
+https://www.mongodb.com/developer/languages/csharp/polymorphism-with-mongodb-csharp/
+
 https://www.mongodb.com/community/forums/t/mongo-model-for-dynamic-fields/206150
