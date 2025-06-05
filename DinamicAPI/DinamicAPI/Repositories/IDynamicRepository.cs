@@ -6,7 +6,9 @@ namespace DinamicAPI.Repositories
     {
         Task<List<BsonDocument>> GetAllAsync();
         Task<BsonDocument?> GetByAccountIdAsync(string accountId);
-
         Task InsertAsync(BsonDocument document);
+        Task<bool> UpdateByAccountIdAsync(string accountId, BsonDocument updatedDocument);
+        Task<bool> DeleteByAccountIdAsync(string accountId);
+
     }
 }

@@ -16,20 +16,22 @@ namespace DinamicAPI.Controllers
             _repository = repository;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] JsonElement jsonElement)
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             try
             {
-                var document = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(jsonElement.GetRawText());
-                
-                await _repository.InsertAsync(document);
-                
-                return Ok(new { message = "Documento inserido com sucesso!" });
+                var docs = await _repository.GetAllAsync();
+
+                var jsonList = docs
+                    .Select(d => JsonSerializer.Deserialize<object>(d.ToJson()))
+                    .ToList();
+
+                return Ok(jsonList);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Erro ao processar documento.", details = ex.Message });
+                return StatusCode(500, new { message = "Erro ao recuperar documentos.", details = ex.Message });
             }
         }
 
@@ -54,24 +56,64 @@ namespace DinamicAPI.Controllers
             }
         }
 
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] JsonElement jsonElement)
         {
             try
             {
-                var docs = await _repository.GetAllAsync();
-
-                var jsonList = docs
-                    .Select(d => JsonSerializer.Deserialize<object>(d.ToJson()))
-                    .ToList();
-
-                return Ok(jsonList);
+                var document = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(jsonElement.GetRawText());
+                
+                await _repository.InsertAsync(document);
+                
+                return Ok(new { message = "Documento inserido com sucesso!" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "Erro ao recuperar documentos.", details = ex.Message });
+                return BadRequest(new { message = "Erro ao processar documento.", details = ex.Message });
             }
         }
+
+        [HttpPut("account/{accountId}")]
+        public async Task<IActionResult> UpdateByAccountId(string accountId, [FromBody] JsonElement jsonElement)
+        {
+            try
+            {
+                var updatedDoc = MongoDB.Bson.Serialization.BsonSerializer.Deserialize<BsonDocument>(jsonElement.GetRawText());
+
+                updatedDoc["accountId"] = accountId;
+
+                var success = await _repository.UpdateByAccountIdAsync(accountId, updatedDoc);
+
+                if (!success)
+                    return NotFound(new { message = "Account not found." });
+
+                return Ok(new { message = "Account updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal error.", details = ex.Message });
+            }
+        }
+
+
+        [HttpDelete("account/{accountId}")]
+        public async Task<IActionResult> DeleteByAccountId(string accountId)
+        {
+            try
+            {
+                var success = await _repository.DeleteByAccountIdAsync(accountId);
+
+                if (!success)
+                    return NotFound(new { message = "Account not found." });
+
+                return Ok(new { message = "Account deleted successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal error.", details = ex.Message });
+            }
+        }
+
+
     }
 }
