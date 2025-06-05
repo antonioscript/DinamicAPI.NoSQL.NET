@@ -10,5 +10,5 @@ public class MongoDBContext
         _database = client.GetDatabase(databaseName);
     }
 
-    //public IMongoCollection<Product> Products => _database.GetCollection<Product>("Products");
+    public IMongoDatabase GetDatabase() => _database;
 }

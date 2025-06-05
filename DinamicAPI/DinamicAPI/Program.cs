@@ -1,4 +1,5 @@
 using DinamicAPI.Data;
+using DinamicAPI.Repositories;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+builder.Services.AddScoped<IDynamicRepository, DynamicRepository>();
 
 //MongoDb
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
