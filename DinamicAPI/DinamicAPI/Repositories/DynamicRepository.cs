@@ -18,6 +18,14 @@ namespace DinamicAPI.Repositories
             return await _collection.Find(new BsonDocument()).ToListAsync();
         }
 
+        public async Task<BsonDocument?> GetByAccountIdAsync(string accountId)
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("accountId", accountId);
+
+            return await _collection.Find(filter).FirstOrDefaultAsync();
+        }
+
+
         public async Task InsertAsync(BsonDocument document)
         {
             await _collection.InsertOneAsync(document);

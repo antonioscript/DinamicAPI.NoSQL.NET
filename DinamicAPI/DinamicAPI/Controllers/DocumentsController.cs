@@ -33,6 +33,28 @@ namespace DinamicAPI.Controllers
             }
         }
 
+
+        [HttpGet("account/{accountId}")]
+        public async Task<IActionResult> GetByAccountId(string accountId)
+        {
+            try
+            {
+                var document = await _repository.GetByAccountIdAsync(accountId);
+
+                if (document == null)
+                    return NotFound(new { message = "Account not found." });
+
+                var json = JsonSerializer.Deserialize<object>(document.ToJson());
+
+                return Ok(json);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Internal error.", details = ex.Message });
+            }
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
