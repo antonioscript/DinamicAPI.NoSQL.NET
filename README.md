@@ -6,92 +6,117 @@ API created to simulate request and sending of dynamic objects and storing in th
 ```json
 {
   "accountId": "ACC-001",
-  "titular": {
-    "nome": "Ana Paula",
-    "cpf": "123.456.789-00"
+  "holder": {
+    "name": "Ana Paula",
+    "taxId": "123.456.789-00",
+    "documents": {
+      "idCard": {
+        "number": "55.444.333-2",
+        "issuer": "SSP-SP"
+      },
+      "driverLicense": {
+        "number": "99999999999",
+        "category": "B",
+        "expiration": "2028-12-31"
+      }
+    }
   },
-  "enderecos": [
-    {
-      "tipo": "Residencial",
-      "logradouro": "Rua das Flores, 123",
-      "cidade": "São Paulo",
-      "estado": "SP"
-    },
-    {
-      "tipo": "Comercial",
-      "logradouro": "Av. Paulista, 1000",
-      "cidade": "São Paulo",
-      "estado": "SP"
-    }
-  ],
-  "contatos": [
-    {
-      "tipo": "Telefone",
-      "valor": "(11) 99999-9999"
-    },
-    {
-      "tipo": "Email",
-      "valor": "ana.paula@email.com"
-    }
-  ],
-  "transacoes": [
-    {
-      "data": "2025-06-05T10:00:00Z",
-      "descricao": "Depósito",
-      "valor": 1000.00
-    },
-    {
-      "data": "2025-06-06T14:30:00Z",
-      "descricao": "Pagamento Boleto",
-      "valor": -350.00
-    }
-  ],
-  "dependentes": [
-    {
-      "nome": "Lucas",
-      "idade": 12,
-      "beneficios": [
-        {
-          "tipo": "Bolsa Estudo",
-          "valorMensal": 500.00
+  "settings": {
+    "preferences": {
+      "notifications": {
+        "email": true,
+        "sms": false,
+        "push": {
+          "android": true,
+          "ios": false
         }
-      ],
-      "cursos": [
+      },
+      "language": "en-US"
+    },
+    "security": {
+      "twoFactorAuth": true,
+      "recentLogins": [
         {
-          "nome": "Inglês",
-          "nivel": "Intermediário"
+          "date": "2025-06-01T09:15:00Z",
+          "ip": "192.168.0.10",
+          "location": {
+            "country": "Brazil",
+            "city": "São Paulo"
+          }
         },
         {
-          "nome": "Robótica",
-          "nivel": "Iniciante"
+          "date": "2025-05-28T21:45:00Z",
+          "ip": "192.168.0.15",
+          "location": {
+            "country": "Brazil",
+            "city": "Campinas"
+          }
         }
       ]
-    },
-    {
-      "nome": "Marina",
-      "idade": 15,
-      "beneficios": [
-        {
-          "tipo": "Plano de Saúde",
-          "valorMensal": 300.00
-        }
-      ],
-      "cursos": [
-        {
-          "nome": "Programação",
-          "nivel": "Avançado"
-        }
-      ]
-    },
-    {
-      "nome": "Rafael",
-      "idade": 9,
-      "beneficios": [],
-      "cursos": []
     }
-  ]
+  },
+  "relationships": {
+    "dependents": [
+      {
+        "name": "Lucas",
+        "age": 12,
+        "schoolHistory": {
+          "current": {
+            "grade": "7th grade",
+            "school": {
+              "name": "Central School",
+              "address": {
+                "street": "Education Street, 45",
+                "neighborhood": "Downtown",
+                "city": "São Paulo"
+              }
+            }
+          },
+          "previous": [
+            {
+              "grade": "6th grade",
+              "school": "Future School"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Marina",
+        "age": 14,
+        "schoolHistory": {
+          "current": {
+            "grade": "9th grade",
+            "school": {
+              "name": "Newton High School",
+              "address": {
+                "street": "Science Avenue, 900",
+                "neighborhood": "Tech District",
+                "city": "Campinas"
+              }
+            }
+          },
+          "previous": [
+            {
+              "grade": "8th grade",
+              "school": "Galileo School"
+            },
+            {
+              "grade": "7th grade",
+              "school": "Galileo School"
+            }
+          ]
+        }
+      }
+    ]
+  }
 }
+
 ```
+
+----
+
+
+
 
 # References
 
