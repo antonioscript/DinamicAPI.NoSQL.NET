@@ -128,7 +128,7 @@ API created to simulate request and sending of dynamic objects and storing in th
 ![image](https://github.com/user-attachments/assets/cc2a2c43-f7c5-45cb-a974-5952ed5855f4)
 
 
-### Fixed DTO
+### Fixed DTO (Objetct 'Data')
 ![image](https://github.com/user-attachments/assets/853452e5-b941-48ec-8898-da49f7368c72)
 
 ```json
