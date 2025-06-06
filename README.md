@@ -115,7 +115,11 @@ API created to simulate request and sending of dynamic objects and storing in th
 
 ----
 
+### Result MongoDB
 ![image](https://github.com/user-attachments/assets/953b4a29-4726-4f4c-9407-4369ac40aa88)
+
+### Result DynamoDB
+![image](https://github.com/user-attachments/assets/cc2a2c43-f7c5-45cb-a974-5952ed5855f4)
 
 
 
