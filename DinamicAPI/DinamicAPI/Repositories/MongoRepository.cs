@@ -4,11 +4,11 @@ using MongoDB.Driver;
 
 namespace DinamicAPI.Repositories
 {
-    public class DynamicRepository : IDynamicRepository
+    public class MongoRepository : IMongoRepository
     {
         private readonly IMongoCollection<BsonDocument> _collection;
 
-        public DynamicRepository(MongoDBContext context)
+        public MongoRepository(MongoDBContext context)
         {
             _collection = context.Collection;
         }
