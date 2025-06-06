@@ -10,6 +10,7 @@ API created to simulate request and sending of dynamic objects and storing in th
 ```json
 {
   "accountId": "ACC-001",
+  "personType": "PF"
   "holder": {
     "name": "Ana Paula",
     "taxId": "123.456.789-00",
@@ -114,6 +115,7 @@ API created to simulate request and sending of dynamic objects and storing in th
     ]
   }
 }
+
 
 ```
 
