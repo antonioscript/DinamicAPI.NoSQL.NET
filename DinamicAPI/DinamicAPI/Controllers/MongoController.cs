@@ -2,6 +2,8 @@
 using MongoDB.Bson;
 using DinamicAPI.Repositories;
 using System.Text.Json;
+using DinamicAPI.DTOs;
+using MongoDB.Bson.Serialization;
 
 namespace DinamicAPI.Controllers
 {
@@ -72,6 +74,59 @@ namespace DinamicAPI.Controllers
                 return BadRequest(new { message = "Erro ao processar documento.", details = ex.Message });
             }
         }
+
+        [HttpPost("Dto-With-Data")]
+        public async Task<IActionResult> Post([FromBody] BaseDynamicDto input)
+        {
+
+            try
+            {
+                var fullJson = new
+                {
+                    accountId = input.AccountId,
+                    personType = input.PersonType,
+                    data = input.Data
+                };
+
+                var raw = JsonSerializer.Serialize(fullJson);
+                var document = BsonSerializer.Deserialize<BsonDocument>(raw);
+
+                await _repository.InsertAsync(document);
+
+                return Ok(new { message = "Documento inserido com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao processar documento.", details = ex.Message });
+            }
+        }
+
+        [HttpPost("Dto-No-Data")]
+        public async Task<IActionResult> PostNoData([FromBody] JsonElement jsonElement)
+        {
+            try
+            {
+                var accountId = jsonElement.GetProperty("accountId").GetString();
+                var personType = jsonElement.GetProperty("personType").GetString();
+
+                if (string.IsNullOrWhiteSpace(accountId) || string.IsNullOrWhiteSpace(personType))
+                {
+                    return BadRequest(new { message = "Campos obrigatórios ausentes." });
+                }
+
+                var document = BsonSerializer.Deserialize<BsonDocument>(jsonElement.GetRawText());
+
+                await _repository.InsertAsync(document);
+
+                return Ok(new { message = "Documento inserido com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Erro ao processar documento.", details = ex.Message });
+            }
+        }
+
+
 
         [HttpPut("account/{accountId}")]
         public async Task<IActionResult> UpdateByAccountId(string accountId, [FromBody] JsonElement jsonElement)
