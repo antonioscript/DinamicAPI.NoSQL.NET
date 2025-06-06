@@ -2,7 +2,7 @@
 
 namespace DinamicAPI.Repositories
 {
-    public interface IDynamicRepository
+    public interface IMongoRepository
     {
         Task<List<BsonDocument>> GetAllAsync();
         Task<BsonDocument?> GetByAccountIdAsync(string accountId);

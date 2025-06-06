@@ -7,11 +7,11 @@ namespace DinamicAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DocumentsController : ControllerBase
+    public class MongoController : ControllerBase
     {
-        private readonly IDynamicRepository _repository;
+        private readonly IMongoRepository _repository;
 
-        public DocumentsController(IDynamicRepository repository)
+        public MongoController(IMongoRepository repository)
         {
             _repository = repository;
         }
