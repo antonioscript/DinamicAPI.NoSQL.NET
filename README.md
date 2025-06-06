@@ -2,6 +2,10 @@
 API created to simulate request and sending of dynamic objects and storing in the NoSQL Bank MongoDB
 
 
+# API
+![image](https://github.com/user-attachments/assets/0878ae78-7ea8-4e3b-9848-a3ea2d472d49)
+
+
 # Payload
 ```json
 {
