@@ -362,9 +362,9 @@ API created to simulate request and sending of dynamic objects and storing in th
 
 
 # References
+https://stackoverflow.com/questions/44935976/how-to-post-a-dynamic-json-property-to-a-c-sharp-asp-net-core-web-api-using-mong
 
 https://www.mongodb.com/community/forums/t/mongo-model-for-dynamic-fields/206150
-
 
 https://www.mongodb.com/developer/languages/csharp/polymorphism-with-mongodb-csharp/
 
