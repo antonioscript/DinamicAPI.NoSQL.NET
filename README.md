@@ -372,16 +372,18 @@ https://www.jsongenerator.io/
 
 
 ## Case
-![image](https://github.com/user-attachments/assets/6d392fdb-1af3-409c-a51c-61ea1671e24f)
+
+![image](https://github.com/user-attachments/assets/8c5032d4-37a2-4542-93e6-b95c49c71c11)
 
 ----
 
-![image](https://github.com/user-attachments/assets/ef975d07-34b7-42f0-93b7-a0fa74ea1e07)
+![image](https://github.com/user-attachments/assets/c71c41f5-1da2-49e1-9bc7-4a7899d11e17)
 
-----
-![image](https://github.com/user-attachments/assets/c5711485-46cb-49ac-a7d3-4cfb9d5faa36)
 
-----
+------
+
+![image](https://github.com/user-attachments/assets/61519bcd-4774-4fb4-ba81-87aa9d752f81)
+
 
 
 
