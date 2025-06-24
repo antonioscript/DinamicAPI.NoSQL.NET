@@ -369,3 +369,19 @@ https://www.mongodb.com/community/forums/t/mongo-model-for-dynamic-fields/206150
 https://www.mongodb.com/developer/languages/csharp/polymorphism-with-mongodb-csharp/
 
 https://www.jsongenerator.io/
+
+
+## Case
+![image](https://github.com/user-attachments/assets/6d392fdb-1af3-409c-a51c-61ea1671e24f)
+
+----
+
+![image](https://github.com/user-attachments/assets/ef975d07-34b7-42f0-93b7-a0fa74ea1e07)
+
+----
+![image](https://github.com/user-attachments/assets/c5711485-46cb-49ac-a7d3-4cfb9d5faa36)
+
+----
+
+
+
